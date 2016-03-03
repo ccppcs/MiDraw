@@ -1,0 +1,143 @@
+package day1001;
+
+import java.awt.*;
+
+import javax.swing.*;
+
+import java.awt.Event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+import javax.swing.JFrame;
+
+class cbh extends JFrame implements ItemListener, ActionListener
+{
+	JRadioButton rbtn1;
+	JRadioButton rbtn2;
+	JRadioButton rbtn3;
+	JCheckBox checkBox;
+	ButtonGroup bGroup;
+	public cbh(String str)
+	{
+		super(str);
+		setBounds(120,120,200,200);
+		setLayout(new GridLayout(0,1));
+		
+		checkBox = new JCheckBox("Are you a programmer");
+		
+		rbtn1 = new JRadioButton(" I like c");
+		rbtn2 = new JRadioButton(" I like C++");
+		rbtn3 = new JRadioButton(" I like Java",true);
+		bGroup=new ButtonGroup();
+		bGroup.add(rbtn1);bGroup.add(rbtn2);bGroup.add(rbtn3);
+		
+		
+		checkBox.addItemListener(this);		
+		rbtn1.addItemListener(this);
+		rbtn2.addItemListener(this);
+		rbtn3.addItemListener(this);
+		
+		
+		add(checkBox);
+		add(rbtn1);add(rbtn2);add(rbtn3);
+		
+		
+		rbtn1.setEnabled(false);
+		rbtn2.setEnabled(false);
+		rbtn3.setEnabled(false);
+		/*
+		checkBox.addActionListener(this);
+		rbtn1.addActionListener(this);
+		rbtn2.addActionListener(this);
+		rbtn3.addActionListener(this);
+		*/
+		
+		setVisible(true);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+	}
+
+	public void itemStateChanged(ItemEvent e) {
+		
+		Object obj = e.getSource();
+		if(obj==checkBox)
+		{
+			if(e.getStateChange()==ItemEvent.SELECTED)
+			{
+				rbtn1.setEnabled(true);
+				rbtn2.setEnabled(true);
+				rbtn3.setEnabled(true);
+			}
+			else 
+			{
+				rbtn1.setEnabled(false);
+				rbtn2.setEnabled(false);
+				rbtn3.setEnabled(false);
+			}
+		}
+		else if(obj==rbtn1)
+		{
+			if(e.getStateChange()==ItemEvent.SELECTED)
+				System.out.println("I like C");
+		}
+		else if(obj==rbtn2)
+		{
+			if(e.getStateChange()==ItemEvent.SELECTED)
+				System.out.println("I like C++");
+		}
+		else if(obj==rbtn3)
+		{
+			if(e.getStateChange()==ItemEvent.SELECTED)
+				System.out.println("I like Java");
+		}
+		/*
+		
+		Object obj = e.getSource();
+		if (obj instanceof JCheckBox && ((JCheckBox)obj) == checkBox)
+		{
+			rbtn1.setEnabled(checkBox.isSelected());
+			rbtn2.setEnabled(checkBox.isSelected());
+			rbtn3.setEnabled(checkBox.isSelected());
+		}
+		if (obj instanceof JRadioButton && (((JRadioButton) obj).isSelected()==true)) {
+			System.out.println(((JRadioButton)obj).getText());			
+		}
+		*/
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		/*
+		Object obj = e.getSource();
+	
+		if (obj instanceof JCheckBox && ((JCheckBox)obj) == checkBox)
+		{
+			rbtn1.setEnabled(checkBox.isSelected());
+			rbtn2.setEnabled(checkBox.isSelected());
+			rbtn3.setEnabled(checkBox.isSelected());
+		}
+		if (obj instanceof JRadioButton && (((JRadioButton) obj).isSelected()==true)) {
+			System.out.println(((JRadioButton)obj).getText());}
+		
+		
+		Object obj = e.getSource();
+		if (obj == rbtn1){
+			System.out.println("I like C");
+		}
+		else if(obj == rbtn2){
+			System.out.println("I like C++");
+		}
+		else if(obj == rbtn3){
+			System.out.println("I like Java");
+		}
+		*/
+	}
+}
+public class checkboxandradiobutton {
+	public static void main(String[] args)
+	{
+		new cbh("aaa");
+	}
+}
